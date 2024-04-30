@@ -16,8 +16,7 @@ func _ready() -> void:
 	loseLabel.hide()
 
 	var windowSizeY = get_viewport().size.y
-	boardSize = round(Vector2(windowSizeY, windowSizeY) / tileSize)
-	print(boardSize)
+	boardSize = round(Vector2(windowSizeY, windowSizeY) / tileSize) - Vector2(2, 2)
 	build_grid()
 
 func get_neighbors(tile) -> Array:
@@ -71,8 +70,7 @@ func on_tile_revealed(tile) -> void:
 	if tile.isBomb:
 		loseLabel.show()
 		for otherTile in grid:
-			if not otherTile.isRevealed:
-				otherTile.reveal(false)
+			otherTile.reveal(false)
 	else:
 		reveal_neighbors(tile)
 

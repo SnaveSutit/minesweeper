@@ -5,7 +5,8 @@ signal on_flag(tile)
 
 const TILE_TEX = preload ("res://sprites/tile.tres")
 const BOMB_TEX = preload ("res://sprites/tile_bomb.tres")
-const FLAG_TEX = preload ("res://sprites/tile_flagged.tres")
+const FLAG_TEX = preload ("res://sprites/tile_flag.tres")
+const INCORRECT_FLAG_TEX = preload ("res://sprites/tile_incorrect_flag.tres")
 const REVEALED_TEX = preload ("res://sprites/tile_revealed.tres")
 
 @export var animationDuration = 0.25
@@ -52,7 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			toggleFlag()
 
 func reveal(sendSignal=true) -> void:
-	if isFlag:
+	if isRevealed:
 		return
 	var originalScale = scale
 	var targetScale = scale * 1.2
@@ -97,7 +98,10 @@ func toggleFlag() -> void:
 func _on_texture_update():
 	if isRevealed:
 		if isBomb:
-			sprite.texture = BOMB_TEX
+			if not isFlag:
+				sprite.texture = BOMB_TEX
+		elif isFlag:
+			sprite.texture = INCORRECT_FLAG_TEX
 		else:
 			sprite.texture = REVEALED_TEX
 	elif isFlag:

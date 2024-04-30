@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2yxh6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5021x"]
-font_size = 120
+font_size = 32
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -16,6 +16,7 @@ mouse_filter = 2
 script = ExtResource("1_2yxh6")
 
 [node name="WinLabel" type="Label" parent="."]
+visible = false
 z_index = 100
 layout_mode = 1
 anchors_preset = 15
@@ -25,7 +26,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "YOU WIN!"
 label_settings = SubResource("LabelSettings_5021x")
-horizontal_alignment = 1
 
 [node name="LoseLabel" type="Label" parent="."]
 visible = false
@@ -36,6 +36,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "YOU LOSE!"
+text = "GAME OVER!"
 label_settings = SubResource("LabelSettings_5021x")
-horizontal_alignment = 1
